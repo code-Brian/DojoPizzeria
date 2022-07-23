@@ -41,13 +41,16 @@ function getRandomInt(max) {
 
 
 let crustChoices = ["hand tossed", "thin", "gluten-free", "cripsy lavosh", "thick cauliflower crust"];
-let sauceChoices = ["marinara", "alfredo", "fire roasted garlic and olive oil", "vodka sauce", "barbeque sauce"];
+let sauceChoices = ["marinara", "alfredo", "fire roasted garlic and olive oil", "vodka sauce", 
+    "barbeque sauce", "ranch", "spicy marinara", 
+    "light alfredo sauce", "light marinara sauce"
+];
 let cheeseChoices = [
     "shredded mozzarella", "aged white-cheddar", "goat cheese", 
     "cream cheese", "smoked gouda", "sharp yellow cheddar", "shredded pepperjack", 
     "feta", "fresh-pulled mozzarella","grated parmesan-romano blend"
 ];
-let toppingChoices = ["pepperoni", "sausage", "veggies", "pineapple", "julienned pepperoni", "mushrooms", "black olives", "kalamata olives", "thin-sliced campari tomatoes"];
+let toppingChoices = ["pepperoni", "sausage", "veggies", "pineapple", "julienned pepperoni", "mushrooms", "black olives", "kalamata olives", "thin-sliced campari tomatoes", "mac and cheese"];
 
 function randomPizzaOven(crust, sauce, cheese, toppings) {
     let randomPizza = {};
@@ -64,4 +67,5 @@ let randomCheese = cheeseChoices[getRandomInt(cheeseChoices.length)];
 let randomTopping = toppingChoices[getRandomInt(toppingChoices.length)];
 
 let randomPizza = randomPizzaOven(randomCrust, randomSauce, randomCheese, randomTopping);
+
 console.log(randomPizza);
