@@ -40,7 +40,7 @@ function getRandomInt(max) {
 }
 
 function getRandomRange(min, max) {
-    return Math.floor(0.33 * max - min) + min;
+    return Math.floor(Math.random() * (max - min)) + min;
     
 }
 
@@ -49,7 +49,10 @@ let crustChoices = [
     "thin", 
     "gluten-free", 
     "cripsy lavosh", 
-    "thick cauliflower crust"
+    "thick cauliflower crust",
+    "deep dish",
+    "whole wheat",
+    "herbed hand tossed"
 ];
 let sauceChoices = [
     "marinara", 
@@ -92,14 +95,15 @@ function randomPizzaOven(crust, sauce, cheeses, toppings) {
     randomPizza.crust = crustChoices[getRandomInt(crustChoices.length - 1)];
     randomPizza.sauce = sauceChoices[getRandomInt(sauceChoices.length - 1)];
     randomPizza.cheese = []
-        for (let i = 0; i < getRandomRange(cheeseChoices.length, 2); i++) {
-            randomPizza.cheese.push(cheeseChoices[i]);
+        let cheesesRange = getRandomRange(2, 4);
+        for (let i=0; i<cheesesRange; i++) {
+            randomPizza.cheese.push(cheeseChoices[getRandomInt(cheeseChoices.length)]);
         }
     randomPizza.toppings = []
-        for (let i = 0; i < getRandomRange(toppingChoices.length, 1); i++) {
-            randomPizza.toppings.push(toppingChoices[i]);
-        }
-        
+        let toppingsRange = getRandomRange(1, 5);
+    for (let i=0; i<toppingsRange; i++) {
+        randomPizza.toppings.push(toppingChoices[getRandomInt(toppingChoices.length)]);
+    }
     return randomPizza;
 }
 
@@ -107,30 +111,21 @@ let randomPizza = randomPizzaOven(crustChoices,sauceChoices, cheeseChoices, topp
 
 console.log(randomPizza);
 
-// function test(arr) {
 
-//     let range = getRandomRange(arr.length, 1);
-//     console.log(`Range is: ${range}\n`);
-//     for (let i = 0; i < range; i++) {
-//         console.log(i);
-//         let random = getRandomInt(range);
-//         console.log(random);
-//     }   
 
+// let testRange = getRandomRange(1,1);
+
+// let testArr = [];
+
+// console.log(testRange);
+
+// for (let i=0; i<testRange; i++) {
+//     testArr.push(crustChoices[getRandomInt(crustChoices.length)]);
 // }
 
-// test(crustChoices)
+// console.log(testArr);
 
-// function randomTest(max) {
-//     let random = Math.floor(Math.random() * max);
-//     console.log(random);
-// }
 
-// randomTest(5);
 
-function randomRangeTest(min, max) {
 
-    return Math.floor(0.33 * (max - min) + min);
-}
 
-console.log(randomRangeTest(1,10));
