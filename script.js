@@ -39,33 +39,98 @@ function getRandomInt(max) {
     return Math.floor(Math.random() * max);
 }
 
+function getRandomRange(min, max) {
+    return Math.floor(0.33 * max - min) + min;
+    
+}
 
-let crustChoices = ["hand tossed", "thin", "gluten-free", "cripsy lavosh", "thick cauliflower crust"];
-let sauceChoices = ["marinara", "alfredo", "fire roasted garlic and olive oil", "vodka sauce", 
-    "barbeque sauce", "ranch", "spicy marinara", 
-    "light alfredo sauce", "light marinara sauce"
+let crustChoices = [
+    "hand tossed", 
+    "thin", 
+    "gluten-free", 
+    "cripsy lavosh", 
+    "thick cauliflower crust"
+];
+let sauceChoices = [
+    "marinara", 
+    "alfredo", 
+    "fire roasted garlic and olive oil", 
+    "vodka sauce", 
+    "barbeque sauce", 
+    "ranch", 
+    "spicy marinara", 
+    "light alfredo sauce", 
+    "light marinara sauce"
 ];
 let cheeseChoices = [
-    "shredded mozzarella", "aged white-cheddar", "goat cheese", 
-    "cream cheese", "smoked gouda", "sharp yellow cheddar", "shredded pepperjack", 
-    "feta", "fresh-pulled mozzarella","grated parmesan-romano blend"
+    "shredded mozzarella", 
+    "aged white-cheddar", 
+    "goat cheese", 
+    "cream cheese", 
+    "smoked gouda", 
+    "sharp yellow cheddar", 
+    "shredded pepperjack", 
+    "feta", 
+    "fresh-pulled mozzarella",
+    "grated parmesan-romano blend"
 ];
-let toppingChoices = ["pepperoni", "sausage", "veggies", "pineapple", "julienned pepperoni", "mushrooms", "black olives", "kalamata olives", "thin-sliced campari tomatoes", "mac and cheese"];
+let toppingChoices = [
+    "pepperoni", 
+    "sausage", 
+    "veggies", 
+    "pineapple", 
+    "julienned pepperoni", 
+    "mushrooms", 
+    "black olives", 
+    "kalamata olives", 
+    "thin-sliced campari tomatoes", 
+    "mac and cheese"
+];
 
-function randomPizzaOven(crust, sauce, cheese, toppings) {
+function randomPizzaOven(crust, sauce, cheeses, toppings) {
     let randomPizza = {};
-    randomPizza.crust = crust;
-    randomPizza.sauce = sauce;
-    randomPizza.cheese = cheese;
-    randomPizza.toppings = toppings;
+    randomPizza.crust = crustChoices[getRandomInt(crustChoices.length - 1)];
+    randomPizza.sauce = sauceChoices[getRandomInt(sauceChoices.length - 1)];
+    randomPizza.cheese = []
+        for (let i = 0; i < getRandomRange(cheeseChoices.length, 2); i++) {
+            randomPizza.cheese.push(cheeseChoices[i]);
+        }
+    randomPizza.toppings = []
+        for (let i = 0; i < getRandomRange(toppingChoices.length, 1); i++) {
+            randomPizza.toppings.push(toppingChoices[i]);
+        }
+        
     return randomPizza;
 }
 
-let randomCrust = crustChoices[getRandomInt(crustChoices.length)];
-let randomSauce = sauceChoices[getRandomInt(sauceChoices.length)];
-let randomCheese = cheeseChoices[getRandomInt(cheeseChoices.length)];
-let randomTopping = toppingChoices[getRandomInt(toppingChoices.length)];
-
-let randomPizza = randomPizzaOven(randomCrust, randomSauce, randomCheese, randomTopping);
+let randomPizza = randomPizzaOven(crustChoices,sauceChoices, cheeseChoices, toppingChoices);
 
 console.log(randomPizza);
+
+// function test(arr) {
+
+//     let range = getRandomRange(arr.length, 1);
+//     console.log(`Range is: ${range}\n`);
+//     for (let i = 0; i < range; i++) {
+//         console.log(i);
+//         let random = getRandomInt(range);
+//         console.log(random);
+//     }   
+
+// }
+
+// test(crustChoices)
+
+// function randomTest(max) {
+//     let random = Math.floor(Math.random() * max);
+//     console.log(random);
+// }
+
+// randomTest(5);
+
+function randomRangeTest(min, max) {
+
+    return Math.floor(0.33 * (max - min) + min);
+}
+
+console.log(randomRangeTest(1,10));
